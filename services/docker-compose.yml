@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  ruby:
+    image: jprime/spikey:ruby
+    build:
+      dockerfile: services/ruby/Dockerfile
+      context: ../
+  golang:
+    image: jprime/spikey:golang
+    build:
+      dockerfile: services/go/Dockerfile
+      context: ../
+  postgres:
+    image: jprime/spikey:postgres
+    build:
+      dockerfile: services/postgres/Dockerfile
+      context: ../
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: mysecretpassword
+      APPLICATION_USER: spikey
+      APPLICATION_DATABASE: spikey_spike
